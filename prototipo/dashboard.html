@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão do Animalec</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script>
+        function navigateTo(page) {
+            window.location.href = page + ".html";
+        }
+
+        function toggleMenu() {
+            const menu = document.querySelector("nav ul");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+
+        window.addEventListener("resize", function() {
+            if (window.innerWidth > 992) {
+                document.querySelector("nav ul").style.display = "flex";
+            } else {
+                document.querySelector("nav ul").style.display = "none";
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class="fas fa-paw"></i> Animalec</div>
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul>
+                <li>ANIMAIS</li>
+                <li>QUIZZES</li>
+                <li>PATROCINADORES</li>
+                <li>ESPECIALISTAS</li>
+                <li>CONTACTOS</li>
+                <li>LOGIN</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>GESTÃO DO ANIMALEC</h1>
+        <div class="divider"></div>
+        <div class="options">
+            <div class="option-box" onclick="navigateTo('users')">
+                <div class="icon"><i class="fas fa-users"></i></div>
+                UTILIZADORES
+            </div>
+            <div class="option-box">
+                <div class="icon"><i class="fas fa-dog"></i></div>
+                ANIMAIS
+            </div>
+            <div class="option-box">
+                <div class="icon"><i class="fas fa-file-alt"></i></div>
+                QUIZZES
+            </div>
+            <div class="option-box">
+                <div class="icon"><i class="fas fa-question-circle"></i></div>
+                QUESTÕES
+            </div>
+            <div class="option-box" onclick="navigateTo('sponsors')">
+                <div class="icon"><i class="fas fa-handshake"></i></div>
+                PATROCINADORES
+            </div>
+            <div class="option-box" onclick="navigateTo('experts')">
+                <div class="icon"><i class="fas fa-user-md"></i></div>
+                ESPECIALISTAS
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

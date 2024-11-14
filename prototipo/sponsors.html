@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Patrocinadores</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo"><i class="fas fa-paw"></i> Animalec</div>
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul>
+                <li>ANIMAIS</li>
+                <li>QUIZZES</li>
+                <li>PATROCINADORES</li>
+                <li>ESPECIALISTAS</li>
+                <li>CONTACTOS</li>
+                <li>LOGIN</li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>GESTÃO DE PATROCINADORES</h1>
+        <div class="divider"></div>
+        <div class="button-group">
+            <button class="button add-button" onclick="toggleAddForm()">+ ADICIONAR PATROCINADOR</button>
+            <button class="button button-group-menu" onclick="navigateTo('dashboard')">☰ MENU PRINCIPAL</button>
+        </div>
+
+        <!-- Add Sponsor Form (initially hidden) -->
+        <div id="addForm" class="add-form" style="display: none;">
+            <h2>Adicionar Patrocinador</h2>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" required>
+            <label for="family">Animal:</label>
+            <input type="text" id="family" required>
+            <button class="button add-button" onclick="addSponsor()">Adicionar</button>
+            <button class="button" onclick="toggleAddForm()">Cancelar</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>NOME ↑</th>
+                    <th>ANIMAL</th>
+                    <th>AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody id="SponsorTable">
+                <tr>
+                    <td>Dr. Nando</td>
+                    <td>Touro</td>
+                    <td><span onclick="editSponsor(this)">Editar</span> | <span onclick="deleteSponsor(this)">Excluir</span></td>
+                </tr>
+                <tr>
+                    <td>Dr. Satoru</td>
+                    <td>Dragão de Komodo</td>
+                    <td><span onclick="editSponsor(this)">Editar</span> | <span onclick="deleteSponsor(this)">Excluir</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function navigateTo(page) {
+            window.location.href = page + ".html";
+        }
+
+        function toggleAddForm() {
+            const form = document.getElementById("addForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+
+        function addSponsor() {
+            const name = document.getElementById("name").value;
+            const family = document.getElementById("family").value;
+
+            if (name && family) {
+                const table = document.getElementById("SponsorTable");
+
+                // Create a new row
+                const row = document.createElement("tr");
+
+                // Name cell
+                const nameCell = document.createElement("td");
+                nameCell.textContent = name;
+                row.appendChild(nameCell);
+
+                // Family cell
+                const familyCell = document.createElement("td");
+                familyCell.textContent = family;
+                row.appendChild(familyCell);
+
+                // Actions cell
+                const actionsCell = document.createElement("td");
+                actionsCell.innerHTML = `<span onclick="editSponsor(this)">Editar</span> | <span onclick="deleteSponsor(this)">Excluir</span>`;
+                row.appendChild(actionsCell);
+
+                // Append the new row to the table
+                table.appendChild(row);
+
+                // Clear input fields and hide the form
+                document.getElementById("name").value = "";
+                document.getElementById("family").value = "";
+                toggleAddForm();
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        }
+
+        function deleteSponsor(element) {
+            const row = element.parentNode.parentNode;
+            row.remove();
+        }
+
+        function editSponsor(element) {
+            alert("Funcionalidade ainda não implementada.");
+        }
+
+        function toggleMenu() {
+            const menu = document.querySelector("nav ul");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+    </script>
+</body>
+</html>
